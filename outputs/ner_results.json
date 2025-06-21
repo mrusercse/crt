@@ -1,0 +1,86 @@
+[
+    {
+        "clause": "1. Definitions:\n(a) The term \u201cConfidential Information\u201d shall include, without limitation, all\ninformation and materials, furnished by either Party to the other in connection\nwith Auditee products and services including information transmitted in writing,\norally, visually (e.g. video terminal display) or on magnetic media, and including\nall proprietary information, customer & prospect lists, trade secrets, trade\nnames or proposed trade names, methods and procedures of operation,\nbusiness or marketing plans, licensed document know-how, ideas, concepts,\ndesigns, drawings, flow charts, diagrams, quality manuals, checklists, guidelines,\nprocesses, formulae, source code materials, specifications, programs, software\npackages, codes and other intellectual property relating to Auditee products and\nservices. Results of any information security audits, tests, analysis, extracts or\nusages carried out by the Auditor in connection with the Auditee\u2019s products\nand/or services, IT infrastructure, etc. shall also be considered Confidential\nInformation.\n(b) The term \u201cAuditee products\u201d shall include all such products, goods, services,\ndeliverables, which are subject to audit by the empanelled auditor under the\nAgreement.",
+        "clause_type": "Confidentiality"
+    },
+    {
+        "clause": "2 Protection of Confidential Information: With respect to any Confidential\nInformation disclosed to it or to which it has access, Auditor affirms that it shall:\n(a) Use the Confidential Information as necessary only in connection with\nscope of audit and in accordance with the terms and conditions\ncontained herein;\n(b) Maintain the Confidential Information in strict confidence and take all\nreasonable steps to enforce the confidentiality obligations imposed\nhereunder, but in no event take less care with the Confidential\nInformation than the parties take to protect the confidentiality of its own\nproprietary and confidential information and that of its other clients;\n(c) Not to make or retain copy of any details of products and/or services,\nprototypes, business or marketing plans, Client lists, Proposals developed\nby or originating from Auditee or any of the prospective clients of\nAuditee.\n(d) Not to make or retain copy of any details of results of any information\nsecurity audits, tests, analysis, extracts or usages carried out by the\nAuditor in connection with the Auditee\u2019s products and/or services, IT\ninfrastructure, etc. without the express written consent of Auditee.\n(e) Not to disclose or in any way assist or permit the disclosure of any\nConfidential Information to any other person or entity without the\nexpress written consent of the auditee ; and\n(f) Return to the auditee, or destroy, at auditee\u2019s discretion, any and all\nConfidential Information disclosed in a printed form or other permanent\nrecord, or in any other tangible form (including without limitation, all\ncopies, notes, extracts, analyses, studies, summaries, records and\nreproductions thereof) immediately on (i) expiration or termination of\nthis agreement, or (ii) the request of Auditee there for.\n(g) Not to send Auditee\u2019s audit information or data and/or any such\nConfidential Information at any time outside India for the purpose of\nstorage, processing, analysis or handling without the express written\nconsent of the Auditee.\n(h) The auditor shall use only the best possible secure methodology to avoid\nconfidentiality breach, while handling audit related data for the purpose\nof storage, processing, transit or analysis including sharing of information\nwith auditee.\n(i) Not to engage or appoint any non-resident/foreigner to undertake any\nactivity related to Information Security Audit.\n(j) Not to discuss with any member of public, media, press, any or any other\nperson about the nature of arrangement entered into between the\nAuditor and the Auditee or the nature of services to be provided by\nAuditor to the Auditee.\n(k) Make sure that all the employees and/or consultants engaged to\nundertake any audit on its behalf have signed the mandatory non-\ndisclosure agreement.",
+        "clause_type": "Confidentiality"
+    },
+    {
+        "clause": "3. Onus. Auditor shall have the burden of proving that any disclosure or use\ninconsistent with the terms and conditions hereof falls within any of the\nforegoing exceptions.",
+        "clause_type": "Other"
+    },
+    {
+        "clause": "4. Permitted disclosure of audit related information:\nThe auditor may share audit information with STQC or similar Government\nentities mandated under the law as and when called upon to do so by such\nagencies with prior written information to the auditee.",
+        "clause_type": "Confidentiality"
+    },
+    {
+        "clause": "5. Exceptions. The Confidentiality obligations as enumerated in Article 2 of this\nAgreement shall not apply in following cases:\n(a) Which is independently developed by Auditor or lawfully received from\nanother, source free of restriction and without breach of this Agreement;\nor\n(b) After it has become generally available to the public without breach of\nthis Agreement by Auditor; or\n(c) Which at the time of disclosure to Auditor was known to such party free\nof restriction and evidenced by documents in the possession of such\nparty; or\n(d) Which Auditee agrees in writing is free of such restrictions.\n(e) Which is received from a third party not subject to the obligation of\nconfidentiality with respect to such Information;",
+        "clause_type": "Confidentiality"
+    },
+    {
+        "clause": "6. Remedies. Auditor acknowledges that any actual or threatened disclosure or use\nof the Confidential Information by Auditor would be a breach of this agreement\nand may cause immediate and irreparable harm to Auditee or to its clients;\nAuditor affirms that damages from such disclosure or use by it may be\nimpossible to measure accurately; and injury sustained by Auditee / its clients\nmay be impossible to calculate and compensate fully. Therefore, Auditor\nacknowledges that in the event of such a breach, Auditee shall be entitled to\nspecific performance by Auditor of its obligations contained in this Agreement.\nIn addition, Auditor shall compensate the Auditee for the loss or damages caused\nto the auditee, actual and liquidated damages, which may be demanded by\nAuditee with liquidated damages not to exceed the Contract value. Moreover,\nAuditee shall be entitled to recover all costs of litigation including reasonable\nattorneys\u2019 fees which it or they may incur in connection with defending its\ninterests and enforcement of contractual rights arising due to a breach of this\nagreement by Auditor. All rights and remedies hereunder are cumulative and in\naddition to any other rights or remedies under any applicable law, at equity, or\nunder this Agreement, subject only to any limitations stated herein.",
+        "clause_type": "Confidentiality"
+    },
+    {
+        "clause": "7. Need to Know. Auditor shall restrict disclosure of such Confidential Information\nto its employees and/or consultants with a need to know (and advise such\nemployees and/or consultants of the obligations assumed herein), shall use the\nConfidential Information only for the purposes set forth in the Agreement, and\nshall not disclose such Confidential Information to any affiliates, subsidiaries,\nassociates and/or third party without prior written approval of the Auditee.\nNo Information relating to auditee shall be hosted or taken outside the country\nin any circumstances.",
+        "clause_type": "Confidentiality"
+    },
+    {
+        "clause": "8. Intellectual Property Rights Protection. No license to a party, under any\ntrademark, patent, copyright, design right, mask work protection right, or any\nother intellectual property right is either granted or implied by the conveying of\nConfidential Information to such party.",
+        "clause_type": "Confidentiality"
+    },
+    {
+        "clause": "9. No Conflict. The parties represent and warrant that the performance of its\nobligations hereunder do not and shall not conflict with any other agreement or\nobligation of the respective parties to which they are a party or by which the\nrespective parties are bound.",
+        "clause_type": "Other"
+    },
+    {
+        "clause": "10. Authority. The parties represent and warrant that they have all necessary\nauthority and power to enter into this Agreement and perform their obligations\nhereunder.",
+        "clause_type": "Other"
+    },
+    {
+        "clause": "11. Governing Law. This Agreement shall be interpreted in accordance with and\ngoverned by the substantive and procedural laws of India and the parties hereby\nconsent to the jurisdiction of Courts and/or Forums situated at <Name of the\ncity>.",
+        "clause_type": "Governing Law"
+    },
+    {
+        "clause": "12. Entire Agreement. This Agreement constitutes the entire understanding and\nagreement between the parties, and supersedes all previous or\ncontemporaneous agreement or communications, both oral and written,\nrepresentations and under standings among the parties with respect to the\nsubject matter hereof.",
+        "clause_type": "Other"
+    },
+    {
+        "clause": "13. Amendments. No amendment, modification and/or discharge of this Agreement\nshall be valid or binding on the parties unless made in writing and signed on\nbehalf of each of the parties by their respective duly authorized officers or\nrepresentatives.",
+        "clause_type": "Other"
+    },
+    {
+        "clause": "14. Binding Agreement. This Agreement shall be binding upon and inure to the\nbenefit of the parties hereto and their respective successors and permitted\nassigns.",
+        "clause_type": "Other"
+    },
+    {
+        "clause": "15. Severability. It is the intent of the parties that in case any one or more of the\nprovisions contained in this Agreement shall be held to be invalid or\nunenforceable in any respect, such provision shall be modified to the extent\nnecessary to render it, as modified, valid and enforceable under applicable laws,\nand such invalidity or unenforceability shall not affect the other provisions of\nthis Agreement.",
+        "clause_type": "Other"
+    },
+    {
+        "clause": "16. Waiver. Waiver by either party of a breach of any provision of this Agreement,\nshall not be deemed to be waiver of any preceding or succeeding breach of the\nsame or any other provision hereof.",
+        "clause_type": "Other"
+    },
+    {
+        "clause": "17. Survival. Both parties agree that all of their obligations undertaken herein with\nrespect to Confidential Information received pursuant to this Agreement shall\nsurvive till perpetuity even after expiration or termination of this Agreement.",
+        "clause_type": "Confidentiality"
+    },
+    {
+        "clause": "18. Non-solicitation. During the term of this Agreement and thereafter for a\nfurther period of two (2) years Auditor shall not solicit or attempt to solicit\nAuditee\u2019s employees and/or consultants, for the purpose of hiring/contract or\nto proceed to conduct business similar to Auditee with any employee and/or\nconsultant of the Auditee who has knowledge of the Confidential Information,\nwithout the prior written consent of Auditee.",
+        "clause_type": "Confidentiality"
+    },
+    {
+        "clause": "19. This Agreement is governed by and shall be construed in accordance with the\nlaws of India. In the event of dispute arising between the parties in connection\nwith the validity, interpretation, and implementation or alleged breach of any\nprovision of this Agreement, the parties shall attempt to resolve the dispute in\ngood faith by senior level negotiations. In case, any such difference or dispute is\nnot amicably resolved within forty five (45) days of such referral for\nnegotiations, it shall be resolved through arbitration process, wherein both the\nparties will appoint one arbitrator each and the third one will be appointed by\nthe two arbitrators in accordance with the Arbitration and Conciliation Act,",
+        "clause_type": "Governing Law"
+    },
+    {
+        "clause": "1996. The venue of arbitration in India shall be (please choose the venue of\ndispute resolution as the city) or where the services are provided. The\nproceedings of arbitration shall be conducted in English language and the\narbitration award shall be substantiated in writing and binding on the parties.\nThe arbitration proceedings shall be completed within a period of one hundred\nand eighty (180) days from the date of reference of the dispute to arbitration.",
+        "clause_type": "Other"
+    },
+    {
+        "clause": "20. Term. This Agreement shall come into force on the date of its signing by both the\nparties and shall be valid up to one year.\nIN WITNESS HEREOF, and intending to be legally bound, the parties have executed this\nAgreement to make it effective from the date and year first written above.\n# In case of auditee being Central Government Ministry/ Departments #\nFor & on behalf of President of India\n(Name and designation of authorized signatory)\n\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\n<Name of Central Govt. Ministry/Department>\nOr\n# In case of auditee being State Government Department #\nFor & on behalf of Governor of \u2026\u2026. < State name>\n\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026..\n(Name and designation of authorized signatory)\n<Name of State Department>\nOr\n# In case of Autonomous Societies/Not-for-profit-company/Public sector undertaking\n/Private Sector #\nFor <Name of organization>, <Name and designation of authorized signatory> duly\nauthorized by rules & regulations / of <Name of society>/ vide resolution no. \u2026. Dated\n\u2026\u2026. Of Board of Directors of ...........<Name of organization>.\n(AUDITEE) (AUDITOR)\nWITNESSES:",
+        "clause_type": "Other"
+    }
+]
