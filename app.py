@@ -21,15 +21,15 @@ from streamlit.components.v1 import html
 from nltk.data import find
 
 # ---- Downloads ----
-def safe_nltk_download(resource):
-    try:
-        find(resource)
-    except LookupError:
-        nltk.download(resource)
+@st.cache_resource
+def download_nltk_resources():
+    for resource in ["punkt", "wordnet"]:
+        try:
+            nltk.data.find(resource)
+        except LookupError:
+            nltk.download(resource)
 
-# Use this to safely load resources
-safe_nltk_download('tokenizers/punkt')
-safe_nltk_download('corpora/wordnet')
+download_nltk_resources()
 
 # ---- Page Setup ----
 st.set_page_config(page_title="Contract Analyzer", layout="wide")
