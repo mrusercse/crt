@@ -16,10 +16,13 @@ import numpy as np
 import nltk
 import re
 from nltk.tokenize import sent_tokenize
+from collections import defaultdict
+from nltk.corpus import wordnet
+from nltk.tokenize import word_tokenize
 from streamlit.components.v1 import html
 
 
-
+nltk.download('wordnet')
 # ---- Page Setup ----
 st.set_page_config(page_title="Contract Analyzer", layout="wide")
 st.title("Contract Analyzer")
@@ -74,15 +77,48 @@ CLAUSE_KEYWORDS = {
 }
 
 
-def detect_clause_type(clause):
-    for label, keywords in CLAUSE_KEYWORDS.items():
-        for keyword in keywords:
-            if keyword.lower() in clause.lower():
-                return label
-    return "Other"
+
+def expand_keywords_with_synonyms(keywords):
+    expanded = set(keywords)
+    for word in keywords:
+        for syn in wordnet.synsets(word):
+            for lemma in syn.lemmas():
+                expanded.add(lemma.name().replace("_", " ").lower())
+    return list(expanded)
+
+# Expand keywords with synonyms (run once)
+EXPANDED_CLAUSE_KEYWORDS = {
+    label: expand_keywords_with_synonyms(keywords)
+    for label, keywords in CLAUSE_KEYWORDS.items()
+}
+
+def detect_clause_type_advanced(clause, threshold=1):
+    clause = clause.lower()
+    words = word_tokenize(clause)
+    scores = defaultdict(int)
+
+    for label, keywords in EXPANDED_CLAUSE_KEYWORDS.items():
+        for kw in keywords:
+            pattern = re.escape(kw)
+            matches = re.findall(rf'\b{pattern}\b', clause)
+            scores[label] += len(matches)
+
+    if not scores:
+        return "Other"
+
+    best_match = max(scores.items(), key=lambda x: x[1])
+    
+    # Return best label only if it has enough weight
+    return best_match[0] if best_match[1] >= threshold else "Other"
 
 def analyze_clauses_inline(clauses):
-    return [{"clause": clause, "clause_type": detect_clause_type(clause)} for clause in clauses]
+    return [
+        {
+            "clause": clause.strip(),
+            "clause_type": detect_clause_type_advanced(clause)
+        }
+        for clause in clauses if clause.strip()
+    ]
 
 
 def download_model_from_gdrive():
@@ -190,6 +226,7 @@ def summarize_clauses(analyzed):
 
 
 
+
 # ---- Text Extraction ----
 def extract_text_from_pdf(uploaded_file):
     text = ""
@@ -197,7 +234,10 @@ def extract_text_from_pdf(uploaded_file):
         for page in pdf.pages:
             page_text = page.extract_text()
             if page_text:
-                text += page_text + "\n"
+                # Clean up extra spaces, headers/footers
+                lines = page_text.strip().split('\n')
+                cleaned_lines = [line.strip() for line in lines if len(line.strip()) > 10]
+                text += "\n".join(cleaned_lines) + "\n"
     return text.strip()
 
 def extract_text_from_docx(uploaded_file):
@@ -206,14 +246,26 @@ def extract_text_from_docx(uploaded_file):
         tmp_path = tmp.name
     text = docx2txt.process(tmp_path).strip()
     os.remove(tmp_path)
+    # Remove multiple blank lines
+    text = re.sub(r'\n\s*\n', '\n\n', text)
     return text
 
+# ---- Clause Splitting ----
+
 def split_pdf_clauses(text):
-    pattern = re.compile(r'(?=(?:\n|^)(?:\d+(\.\d+)*|Section \d+)[\.\):\s])')
+    """
+    Improved clause splitter: Supports numbered sections, "Section", "Article", etc.
+    """
+    # Match: 1., 1.1, Section 2, Article III, Clause 4, etc.
+    pattern = re.compile(
+        r'(?=(?:\n|^)(?:\d+(\.\d+)*|Section\s+\d+|Article\s+[IVXLC]+|Clause\s+\d+)[\.\):\s])',
+        re.IGNORECASE
+    )
     matches = list(pattern.finditer(text))
     clauses = []
     if not matches:
-        return [text]
+        return [text.strip()]
+
     for i in range(len(matches)):
         start = matches[i].start()
         end = matches[i + 1].start() if i + 1 < len(matches) else len(text)
@@ -223,7 +275,30 @@ def split_pdf_clauses(text):
     return clauses
 
 def split_docx_clauses(text):
-    return [para.strip() for para in text.split('\n') if len(para.strip()) > 30]
+    """
+    Advanced DOCX clause splitter: uses section titles, and filters meaningful paragraphs.
+    """
+    lines = [line.strip() for line in text.split("\n") if line.strip()]
+    clauses = []
+    buffer = []
+
+    section_pattern = re.compile(r'^(?:\d+(\.\d+)*|Section \d+|Article [IVXLC]+|Clause \d+)[\.\):\s]', re.IGNORECASE)
+
+    for line in lines:
+        if section_pattern.match(line):
+            if buffer:
+                full_clause = " ".join(buffer).strip()
+                if len(full_clause) > 30:
+                    clauses.append(full_clause)
+                buffer = []
+        buffer.append(line)
+
+    if buffer:
+        full_clause = " ".join(buffer).strip()
+        if len(full_clause) > 30:
+            clauses.append(full_clause)
+
+    return clauses
 
 
 def parse_uploaded_document(file, filetype):
@@ -243,9 +318,7 @@ def parse_uploaded_document(file, filetype):
 uploaded_file = st.file_uploader("Upload a contract (.pdf or .docx)", type=["pdf", "docx"])
 
 
-def extract_text_from_txt(uploaded_file):
-    text = uploaded_file.read().decode("utf-8", errors="ignore").strip()
-    return text
+
 
 def split_txt_clauses(text):
     return [para.strip() for para in text.split('\n') if len(para.strip()) > 30]
