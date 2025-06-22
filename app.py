@@ -18,10 +18,18 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.corpus import wordnet
 from collections import defaultdict
 from streamlit.components.v1 import html
+from nltk.data import find
 
 # ---- Downloads ----
-nltk.download("punkt")
-nltk.download("wordnet")
+def safe_nltk_download(resource):
+    try:
+        find(resource)
+    except LookupError:
+        nltk.download(resource)
+
+# Use this to safely load resources
+safe_nltk_download('tokenizers/punkt')
+safe_nltk_download('corpora/wordnet')
 
 # ---- Page Setup ----
 st.set_page_config(page_title="Contract Analyzer", layout="wide")
