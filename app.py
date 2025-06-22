@@ -207,33 +207,33 @@ if uploaded_file:
         st.session_state.clear()
         st.session_state["last_filename"] = uploaded_file.name
 
-  if "analyzed" not in st.session_state:
-    with st.spinner("Analyzing..."):
-        loading_placeholder = st.empty()
-        loading_placeholder.markdown(
-            """
-                <div style="text-align:center;">
-                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwNv2lENjUn4-lBWVVFT1zohQCWu_S9HvYQoztSNZytFd2h00HXv3r7Dm0Np4H1CkVR25Z_uBM3YUDkT_gjQIMhvksc-jzhX5lPDY80Oo-b-R5K3y_jITyEDgiOompkogEtqqWigAUyZbM06sQROmagVmXX6E0uata1yO_5rnEe4NHe_-wGjSEQJ8xhyphenhyphenwF/s1600/Contract.gif" width="800"/>
-                    <p style="font-size:18px;">Analyzing your contract... Please wait!</p>
-                </div>
-                """,
-            unsafe_allow_html=True
-        )
-
-        # --- Your actual processing logic here ---
-        full_text, clauses = parse_uploaded_document(uploaded_file, filetype)
-        analyzed = analyze_clauses_inline(clauses)
-        ml_preds = classify_clauses_ml([c["clause"] for c in analyzed])
-        for i in range(len(analyzed)):
-            analyzed[i]["risk_label"] = ml_preds[i]
-        full_summary, clause_summaries = summarize_clauses(analyzed)
-
-        # Store results in session_state
-        st.session_state["analyzed"] = analyzed
-        st.session_state["full_summary"] = full_summary
-        st.session_state["clause_summaries"] = clause_summaries
-
-        loading_placeholder.empty()  # Hide GIF
+    if "analyzed" not in st.session_state:
+        with st.spinner("Analyzing..."):
+            loading_placeholder = st.empty()
+            loading_placeholder.markdown(
+                """
+                    <div style="text-align:center;">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwNv2lENjUn4-lBWVVFT1zohQCWu_S9HvYQoztSNZytFd2h00HXv3r7Dm0Np4H1CkVR25Z_uBM3YUDkT_gjQIMhvksc-jzhX5lPDY80Oo-b-R5K3y_jITyEDgiOompkogEtqqWigAUyZbM06sQROmagVmXX6E0uata1yO_5rnEe4NHe_-wGjSEQJ8xhyphenhyphenwF/s1600/Contract.gif" width="800"/>
+                        <p style="font-size:18px;">Analyzing your contract... Please wait!</p>
+                    </div>
+                    """,
+                unsafe_allow_html=True
+            )
+    
+            # --- Your actual processing logic here ---
+            full_text, clauses = parse_uploaded_document(uploaded_file, filetype)
+            analyzed = analyze_clauses_inline(clauses)
+            ml_preds = classify_clauses_ml([c["clause"] for c in analyzed])
+            for i in range(len(analyzed)):
+                analyzed[i]["risk_label"] = ml_preds[i]
+            full_summary, clause_summaries = summarize_clauses(analyzed)
+    
+            # Store results in session_state
+            st.session_state["analyzed"] = analyzed
+            st.session_state["full_summary"] = full_summary
+            st.session_state["clause_summaries"] = clause_summaries
+    
+            loading_placeholder.empty()  # Hide GIF
 
     # ---- Display ----
     st.subheader("Contract Summary")
