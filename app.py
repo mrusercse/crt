@@ -89,7 +89,7 @@ def analyze_clauses_inline(clauses):
 def load_summarizer():
     return pipeline("summarization", model="sshleifer/distilbart-cnn-12-6", framework="pt")
 
-summarizer = load_summarizer()
+
 
 def truncate_text_by_sentences(text, max_words=800):
     sentences = sent_tokenize(text)
@@ -227,6 +227,8 @@ if uploaded_file:
                     """,
                 unsafe_allow_html=True
             )
+
+            summarizer = load_summarizer()
     
             # --- Your actual processing logic here ---
             full_text, clauses = parse_uploaded_document(uploaded_file, filetype)
