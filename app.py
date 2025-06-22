@@ -216,37 +216,46 @@ if uploaded_file:
         st.session_state["last_filename"] = uploaded_file.name
 
     if "analyzed" not in st.session_state:
-        with st.spinner("Analyzing..."):
+        with st.spinner("Parsing and analyzing document..."):
             loading_placeholder = st.empty()
             loading_placeholder.markdown(
                 """
-                    <div style="text-align:center;">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwNv2lENjUn4-lBWVVFT1zohQCWu_S9HvYQoztSNZytFd2h00HXv3r7Dm0Np4H1CkVR25Z_uBM3YUDkT_gjQIMhvksc-jzhX5lPDY80Oo-b-R5K3y_jITyEDgiOompkogEtqqWigAUyZbM06sQROmagVmXX6E0uata1yO_5rnEe4NHe_-wGjSEQJ8xhyphenhyphenwF/s1600/Contract.gif" width="800"/>
-                        <p style="font-size:18px;">Analyzing your contract... Please wait!</p>
-                    </div>
-                    """,
+                <div style="text-align:center;">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwNv2lENjUn4-lBWVVFT1zohQCWu_S9HvYQoztSNZytFd2h00HXv3r7Dm0Np4H1CkVR25Z_uBM3YUDkT_gjQIMhvksc-jzhX5lPDY80Oo-b-R5K3y_jITyEDgiOompkogEtqqWigAUyZbM06sQROmagVmXX6E0uata1yO_5rnEe4NHe_-wGjSEQJ8xhyphenhyphenwF/s1600/Contract.gif" width="800"/>
+                    <p style="font-size:18px;">Analyzing your contract... Please wait!</p>
+                </div>
+                """,
                 unsafe_allow_html=True
             )
 
-            summarizer = load_summarizer()
-    
-            # --- Your actual processing logic here ---
             full_text, clauses = parse_uploaded_document(uploaded_file, filetype)
             analyzed = analyze_clauses_inline(clauses)
+
             ml_preds = classify_clauses_ml([c["clause"] for c in analyzed])
             for i in range(len(analyzed)):
                 analyzed[i]["risk_label"] = ml_preds[i]
+
             full_summary, clause_summaries = summarize_clauses(analyzed)
-    
-            # Store results in session_state
+
+            # Cleanup loader
+            loading_placeholder.empty()
+
             st.session_state["analyzed"] = analyzed
             st.session_state["full_summary"] = full_summary
             st.session_state["clause_summaries"] = clause_summaries
-    
-            loading_placeholder.empty()  # Hide GIF
 
-    # ---- Display ----
+            # Save outputs
+            save_json(analyzed, os.path.join(output_dir, f"classified_{name_without_ext}.json"))
+            
+
+    analyzed = st.session_state["analyzed"]
+    full_summary = st.session_state["full_summary"]
+    clause_summaries = st.session_state["clause_summaries"]
+
+    # ---- Display Summary ----
     st.subheader("Contract Summary")
+    st.markdown("Full Summary")
+
     st.info(full_summary)
 
     html(f"""
@@ -295,3 +304,18 @@ if uploaded_file:
     # ---- Downloads ----
     st.download_button("Download Results (JSON)", json.dumps(analyzed, indent=4, ensure_ascii=False), file_name=f"classified_{name_without_ext}.json", mime="application/json")
     st.download_button("Download Summary (JSON)", json.dumps({"full_summary": full_summary, "clause_summaries": clause_summaries}, indent=4, ensure_ascii=False), file_name=f"summarized_{name_without_ext}.json", mime="application/json")
+
+
+
+import gc
+import torch
+
+try:
+    del summarizer  # Remove summarizer
+except:
+    pass
+
+gc.collect()
+
+if torch.cuda.is_available():
+    torch.cuda.empty_cache()
