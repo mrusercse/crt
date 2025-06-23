@@ -87,7 +87,8 @@ def analyze_clauses_inline(clauses):
 
 @st.cache_resource
 def load_summarizer():
-    return pipeline("summarization", model="sshleifer/distilbart-cnn-12-6", framework="pt")
+    # return pipeline("summarization", model="sshleifer/distilbart-cnn-12-6", framework="pt")
+    return pipeline("summarization", model="knkarthick/MEETING_SUMMARY", framework="pt")
 
 
 
@@ -306,16 +307,3 @@ if uploaded_file:
     st.download_button("Download Summary (JSON)", json.dumps({"full_summary": full_summary, "clause_summaries": clause_summaries}, indent=4, ensure_ascii=False), file_name=f"summarized_{name_without_ext}.json", mime="application/json")
 
 
-
-import gc
-import torch
-
-try:
-    del summarizer  # Remove summarizer
-except:
-    pass
-
-gc.collect()
-
-if torch.cuda.is_available():
-    torch.cuda.empty_cache()
