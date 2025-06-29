@@ -87,8 +87,8 @@ def analyze_clauses_inline(clauses):
 
 @st.cache_resource
 def load_summarizer():
-    # return pipeline("summarization", model="sshleifer/distilbart-cnn-12-6", framework="pt")
-    return pipeline("summarization", model="knkarthick/MEETING_SUMMARY", framework="pt")
+    return pipeline("summarization", model="sshleifer/distilbart-cnn-12-6", framework="pt")
+    # return pipeline("summarization", model="knkarthick/MEETING_SUMMARY", framework="pt")
 
 
 
