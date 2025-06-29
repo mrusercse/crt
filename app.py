@@ -207,14 +207,21 @@ def parse_uploaded_document(file, filetype):
         raise ValueError("Unsupported format")
     return text, clauses
 
-# ---- Process Uploaded File ----
+def save_json(data, filename):
+    with open(filename, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=4, ensure_ascii=False)
+
+
+
 if uploaded_file:
     name_without_ext = os.path.splitext(uploaded_file.name)[0].lower()
     filetype = uploaded_file.name.split(".")[-1].lower()
 
+    # Clear session_state if file changes
     if "last_filename" not in st.session_state or st.session_state["last_filename"] != uploaded_file.name:
         st.session_state.clear()
         st.session_state["last_filename"] = uploaded_file.name
+
 
     if "analyzed" not in st.session_state:
         with st.spinner("Parsing and analyzing document..."):
@@ -252,7 +259,6 @@ if uploaded_file:
     analyzed = st.session_state["analyzed"]
     full_summary = st.session_state["full_summary"]
     clause_summaries = st.session_state["clause_summaries"]
-
     # ---- Display Summary ----
     st.subheader("Contract Summary")
     st.markdown("Full Summary")
